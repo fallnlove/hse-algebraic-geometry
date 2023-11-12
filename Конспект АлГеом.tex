@@ -1,0 +1,416 @@
+% Это основная команда, с которой начинается любой \LaTeX-файл. Она отвечает за тип документа, с которым связаны основные правил оформления текста.
+\documentclass{article}
+
+% Здесь идет преамбула документа, тут пишутся команды, которые настраивают LaTeX окружение, подключаете внешние пакеты, определяете свои команды и окружения. В данном случае я это делаю в отдельных файлах, а тут подключаю эти файлы.
+
+% Здесь я подключаю разные стилевые пакеты. Например возможности набирать особые символы или возможность компилировать русский текст. Подробное описание внутри.
+\usepackage{packages}
+
+% Здесь я определяю разные окружения, например, теоремы, определения, замечания и так далее. У этих окружений разные стили оформления, кроме того, эти окружения могут быть нумерованными или нет. Все подробно объяснено внутри.
+\usepackage{environments}
+
+% Здесь я определяю разные команды, которых нет в LaTeX, но мне нужны, например, команда \tr для обозначения следа матрицы. Или я переопределяю LaTeX команды, которые работают не так, как мне хотелось бы. Типичный пример мнимая и вещественная часть комплексного числа \Im, \Re. В оригинале они выглядят не так, как мы привыкли. Кроме того, \Im еще используется и для обозначения образа линейного отображения. Подробнее описано внутри.
+\usepackage{commands}
+
+% Потребуется для вставки картинки подписи
+% \usepackage{graphicx}
+
+% Пакет для титульника проекта
+\usepackage{titlepage}
+
+% Здесь задаем параметры титульной страницы
+\setUDK{192.168.1.1}
+% Выбрать одно из двух
+\setToResearch
+%\setToProgram
+
+\setTitle{Базисы шмазисы}
+
+% Выбрать одно из трех:
+% КТ1 -- \setStageOne
+% КТ2 -- \setStageTwo
+% Финальная версия -- \setStageFinal
+\setStageOne
+%\setStageTwo
+%\setStageFinal
+
+\setGroup{201}
+% Сюда можно воткнуть картинку подписи с помощью \includegraphics[scale=0.2]{<имя файла>}
+% (scale подбирается индивидуально для конкретной картинки)
+\setStudentSgn{подпись студента}
+\setStudent{И.И.Иванов}
+\setStudentDate{11.06.2021}
+\setAdvisor{Дмитрий Витальевич Трушин}
+\setAdvisorTitle{доцент, к.ф.-м.н.}
+\setAdvisorAffiliation{ФКН НИУ ВШЭ}
+\setAdvisorDate{12.06}
+\setGrade{11}
+% Сюда можно воткнуть картинку подписи с помощью \includegraphics[scale=0.2]{<имя файла>}
+% (scale подбирается индивидуально для конкретной картинки)
+\setAdvisorSgn{подпись руководителя}
+\setYear{2021}
+
+
+\begin{document}
+
+\section*{Лекция 2}
+
+\begin{definition}
+    Подмножество $I$ кольца $R$ называется \textit{идеалом},
+    если оно является подгруппой по сложению и
+    $ra \in I$, $ar \in I$ для любых $a \in I$, $r \in R$.
+\end{definition}
+
+\begin{definition}
+    Идеал $I$ называется \textit{главным}, если существует
+    такой элемент $a \in R$, что $I = (a)$.
+\end{definition}
+
+\begin{theorem}[Теорема о гомоморфизме]
+    Пусть $\varphi : R \to R'$ - гомоморфизм колец.
+    Тогда имеет место изоморфизм
+    $$R / \ker \varphi \cong \Im \varphi$$
+\end{theorem}
+
+\begin{definition}
+    Кольцо $R$ - \textit{нетерово}, если любой идеал в $R$
+    конечно порожден
+\end{definition}
+
+\begin{theorem}
+    Кольцо $R$ - нетерово тогда и только тогда, когда
+    любая возрастающая цепочка идеалов в $R$ стабилизируется.
+\end{theorem}
+
+\begin{theorem}
+    Пусть кольцо $R$ - нетерово и $\varphi : R \to R$
+    - сюръекция. Тогда $\varphi$ - изоморфизм.
+\end{theorem}
+
+\begin{theorem}[Гильберта о базисе]
+    Пусть кольцо $R$ - нетерово. Тогда кольцо
+    $R[x]$ - тоже нетерово.
+\end{theorem}
+
+\begin{theorem}
+    Пусть кольцо $R$ - нетерово. Тогда $R / I$ - тоже нетерово.
+\end{theorem}
+
+\begin{definition}
+    Необратимый элемент $a \in R$ \textit{неприводим}, если не существует
+    разложения $a = b \cdot c$, где $b, c$ - необратимы.
+\end{definition}
+
+\begin{definition}
+    Необратимый элемент $a \in R$ называется
+    \textit{простым}, если для любого элемента $b c$,
+    который делится на $a$, верно, что либо $a | b$, либо $a | c$.
+\end{definition}
+
+\begin{theorem}
+    Пусть кольцо $R$ - нетерово. Тогда 
+    для любого необратимого $a \in R$
+    существует разложение $a = a_1 \cdot \dots a_n$,
+    где $a_i$ - необратимы.
+\end{theorem}
+
+\begin{definition}
+    Идеал $I$ - \textit{неприводим}, если для любого разложения
+    $I = J_1 \cap J_2$ или $J_1 \in I$, или $J_2 \in I$.
+\end{definition}
+
+\begin{definition}
+    Идеал $I$ - \textit{простой}, если для любых
+    $a, b \in R$ из $a \cdot b \in I $ следует, что
+    либо $a \in I$, либо $b \in I$.
+\end{definition}
+
+\begin{definition}
+    Аффинное пространство $\mathbb{A}^n = \{(a_1, \dots, a_n), a_i \in \mathbb{K}\}$.
+\end{definition}
+
+\begin{definition}
+    $X \subset \mathbb{A}^n$ - называется алгебраическим множеством, если
+    $X = \{p = 0 \mid p \in \mathcal{P}\}$.
+\end{definition}
+
+\begin{definition}
+    Пусть $I$ - идеал, тогда множеством нулей этого
+    идеала называется множество
+    $$\mathbb{V}(I) = \{x \mid \forall f \in I f(x) = 0\}$$
+\end{definition}
+
+\begin{definition}
+    Возьмем $X \subset \mathbb{A}^n$, тогда аннулирующим идеалом этого
+    множества называется идеал
+    $$\mathbb{I}(X) = \{f \mid f|_X \equiv 0\}$$
+\end{definition}
+
+\begin{definition}
+    Идеал $I$ называется \textit{радикальным}, если
+    $$\forall f \in R \ \exists n  \ f^n \in I \Rightarrow f \in I$$
+\end{definition}
+
+\begin{definition}
+    Радикалом идеала $I$ называется такой идеал
+    $$\sqrt{I} = \{f \mid \exists n \ f^n \in I\}$$
+\end{definition}
+
+\begin{theorem}[Гильберта о нулях]
+    $$\mathbb{I}(\mathbb{V}(I)) = \sqrt{I}$$
+\end{theorem}
+
+\begin{definition}
+    Для кольца $R$ \textit{областью целостности}
+    называется кольцо без делителей нуля.
+\end{definition}
+
+\section*{Лекция 3}
+
+\begin{theorem}[Слабая теорема Гильберта о нулях]
+    $$I \subset \mathbb{K}[x_1 \dots x_n] \Rightarrow \mathbb{V}(I) \neq \varnothing$$
+\end{theorem}
+
+\begin{definition}
+    Топология Зарисского в $\mathbb{A}^n$.
+    Замкнутые множества - алгебраические.
+    Пусть $X_i$ - замкнуто, тогда
+    $\bigcap\limits_{i \in I} X_i$ - замкнуто.
+    Пусть $X_i$ - открыто, тогда
+    $\bigcup\limits_{i = 1}^{n} X_i$ - открыто.
+\end{definition}
+
+\begin{definition}
+    Для подмножества $Z \in \mathbb{A}^n$ его замыканием
+    называется
+    $$\overline{Z} = \bigcap\limits_{X \supset Z, X - \text{замкнуто}} X$$
+\end{definition}
+
+\begin{definition}
+    Подмножество $Y \subset X$, где $X$ - алгебраическое,
+    называется плотным в $X$, если $\overline{Y} = X$.
+\end{definition}
+
+\begin{definition}
+    Регулярной функцией на алгебраическом множестве
+    $X \subset \mathbb{A}^n$ называется ограничение
+    многочлена на $X$.
+\end{definition}
+
+\begin{definition}
+    Алгеброй регулярных функций на $X$ называется
+    $\mathbb{K}[X] = \mathbb{K}[x_1 \dots x_n] / \mathbb{I}(X)$
+\end{definition}
+
+\begin{definition}
+    Замкнутое множество $X$ называется \textit{неприводимым},
+    если не существует $X_1, X_2 \subsetneq X$ - замкнутых
+    таких, что $X_1 \cup X_2 = X$.
+\end{definition}
+
+\begin{theorem}
+    Любое замкнутое $X \subset \mathbb{A}^n$ раскладывается
+    единственным образом в объединение неприводимых.
+    $$X = X_1 \cup \dots \cup X_n$$
+\end{theorem}
+
+\begin{theorem}
+    $X$ - неприводимо тогда и только тогда,
+    когда в $\mathbb{K}[X] = \mathbb{K}[x_1 \dots x_n] / \mathbb{I}(X)$
+    нет делителей нуля.
+\end{theorem}
+
+\section*{Лекция 4}
+
+\begin{definition}
+    Квазиаффинное множество - открытое подмножество
+    в алгебраическом множестве.
+\end{definition}
+
+\begin{definition}
+    Множество $X$ - локально замкнуто, если
+    $X = U \cap V$, где $U$ - открытое, $V$ - замкнутое.
+    Это эквивалентно тому, что $X$ - открыто в замкнутом.
+\end{definition}
+
+\begin{definition}
+    Если $X$ - неприводимо, то определим
+    $\text{Frac} \mathbb{K}[X] = \{\frac{f}{g} \mid
+    f, g \in \mathbb{K}[X], g \neq 0\} / \frac{f}{g} \sim
+    \frac{f'}{g'}$
+\end{definition}
+
+\begin{definition}
+    Функция $f$ - рациональная, если
+    $f \in \text{Frac} \mathbb{K}[X] = \mathbb{K}(X)$.
+\end{definition}
+
+\begin{definition}
+    Рациональная функция $f$ регулярна в точке $x \in X$, если
+    $f \sim \frac{g}{h}, h(x) \neq 0$.
+\end{definition}
+
+\begin{definition}
+    Область определения функции $f$ -
+    $\{x \mid f - \text{регулярна в } x\}$. Это множество открыто
+    и не пусто.
+\end{definition}
+
+\begin{theorem}
+    Рациональная функция $f \in \mathbb{K}(X)$ регулярна
+    в $x \ \forall x \in X$, тогда $f \in \mathbb{K}[X]$.
+\end{theorem}
+
+\begin{definition}
+    Пусть $X \subset Y$ - квазиаффинное, тогда
+    $$ \mathbb{K} [X] = \{f \in \mathbb{K} (Y)
+    \mid f - \text{регулярна в } x \ \forall x \in X\} $$
+\end{definition}
+
+\begin{definition}
+    Пусть $R$ - область целостности $(R = K[X])$, $S \subset R$ - мультипликативное
+    подмножество
+    $$
+        S^{-1}R = \left\{\frac{r}{s} \mid r \in R, s \in S\right\} /
+        \left\{\frac{r}{s} \sim \frac{r'}{s'} \mid rs' - r's = 0\right\}
+    $$
+\end{definition} 
+
+\begin{definition}
+    Регулярное отображение (морфизм) $\varphi : X \to Y$, $X \subset \mathbb{A}^n, Y \subset \mathbb{A}^m$ - алгебраические подмножества или квазиафинные многообразия. 
+    $$
+        \varphi = (\varphi_1 ... \varphi_m), \ \ \ \varphi_i \in k[X], \ \ \ \varphi(X) \subset Y
+    $$
+\end{definition}
+
+\begin{definition}
+    $\varphi* : k[Y] \to k[X]$ - двойственный (обратный) гомоморфизм.
+    $$f \in k[Y], \ \ \ x \in X, \ \ \ (\varphi* f)(x) = f (\varphi(x))$$
+\end{definition}
+
+\begin{theorem}
+    $$\{ \varphi : X \to Y - \text{регулярна} \} \Longleftrightarrow \{ \varphi* : k[Y] \to k[X] - \text{гомоморфизм} \}$$
+\end{theorem}
+
+\begin{definition}
+    $\varphi : X \to Y$ - гомоморфизм, если $\exists \psi : Y \to X$, такой что
+    $\psi \circ \varphi = \text{id}_X$ и $\varphi \circ \psi = \text{id}_Y$
+\end{definition}
+
+\begin{definition}
+    Квазиаффинное многообразие $X$ называется аффинным, если
+    $\exists Y \subset \mathbb{A}^n$ - замкнутое и $X, Y$ - изоморфны.
+\end{definition}
+
+\begin{definition}
+    Отображение $\varphi : X \to Y$ - доминантное, если $\overline{\text{Im} \varphi} = Y$
+\end{definition}
+
+\begin{theorem}
+    $\varphi$ - доминантно, тогда $\varphi * : k[Y] \to k[X]$ - инъективен.
+\end{theorem}
+
+\begin{definition}
+    Рациональное отображение $\varphi : X \dashrightarrow Y$, $X \in \mathbb{A}^n, Y \in \mathbb{A}^m$ - замкнутые неприводимые. 
+    $$\varphi = (\varphi_1, ..., \varphi_m), \ \ \ \varphi_i \in k(X), \ \ \ \varphi(X) \subset Y$$
+    Если мы возьмем $U \subset X$, $V \subset Y$ - открытые, то $\varphi : U \to V$ - регулярное отобрражение
+\end{definition}
+
+\begin{theorem}
+    $U \subset X$ - открыто, то $k(U) = k(V)$.
+\end{theorem}
+
+\begin{theorem}
+    Рациональное отображение $\varphi$ - доминантно, тогда $\varphi * : k(Y) \to k(X)$ - инъективен.
+\end{theorem}
+
+\begin{definition}
+    Рациональное отображение $\varphi : X \dashrightarrow Y$ - бирационально,
+    если $\exists \psi : Y \dashrightarrow X$, такой что $\varphi \circ \psi = \text{id}_Y$, $\psi \circ \varphi = \text{id}_X$ - на области определения.
+\end{definition}
+
+\begin{theorem}
+    Если рациональные функции совпадают на открытом подмножестве, то они равны.
+\end{theorem}
+
+\begin{theorem}
+     Если рациональные отображения совпадают на открытом подмножестве, то они равны.
+\end{theorem}
+
+\begin{theorem}
+    $\varphi$ - бирационально тогда и только тогда, когда $\varphi *$ - изоморфизм $k(Y)$ и $k(X)$.
+\end{theorem}
+
+\begin{definition}
+    Алгебраический тор - $(\mathbb{A} \backslash \{0\})^n$.
+
+    $$(t_1, ..., t_n) \cdot (t_1', ..., t_n') = (t_1 \cdot t_1', ..., t_n \cdot t_n')$$
+\end{definition}
+
+\begin{definition}
+    $G$ - алгебраическая группа, если $G$ - аффинное многообразие и группа. И если $mul : G \times G \to G$,
+    $inv : G \times G \to G$ - регулярные отображения.
+\end{definition}
+
+\begin{definition}
+    $G \curvearrowright X$ - действие алгебраической группы, если это действие и регулярное отображение на аффинных многообразиях.
+\end{definition}
+
+\begin{definition}
+    Торическое многообразие $X \supset T$ - открытое, $T \curvearrowright X$ - продолжение действия тора на себе.
+\end{definition}
+
+\section*{Лекция 5}
+
+\section*{Лекция 6}
+
+Тут базисы Гребнера, мне лент их техать.
+
+\begin{definition}
+    $f : X \dashrightarrow Y$ - бирационально тогда и только тогда, когда
+    $\exists U \subset X, V \subset Y$, $f$ - изоморфизм $U, V$.
+\end{definition}
+
+\begin{definition}
+    $X$, $Y$ - бирационально эквивалентны, если $\exists f : X \dashrightarrow Y$ - бирациональное.
+\end{definition}
+
+\begin{theorem}
+    Любое многообразие бирационально эквиалентно какой-то гиперповерхности $\{f = 0\} \subset \mathbb{A}^n$
+\end{theorem}
+
+\begin{theorem}
+    $L \supset K$ - конечное расширение полей, тогда $\exists x, L = K(x)$.
+\end{theorem}
+
+\begin{theorem}
+    Пусть $T_1 \subset X_1, T_2 \subset X_2$. И $\varphi : T_1 \to T_2$ - гомоморфизм
+    $$\varphi : X_1 \dashrightarrow X_2 - \text{бирациональное} \Longleftrightarrow \varphi : T_1 \to T_2 - \text{изоморфизм} \Longleftrightarrow \varphi* : M_2 \to M_1 - \text{изоморфизм}$$
+\end{theorem}
+
+\begin{definition}
+    $X$ - торическое, тогда $X$ - бирационально эквивалентно $\mathbb{A}^n$.
+\end{definition}
+
+\begin{definition}
+    $X$ - неприводимо, то размерность $\dim X =$ степень трансцедентности $trdeg K(X)$.
+    Если приводимо $X = \cup X_i$, то $\dim X = max$ размерностей его компонент.
+\end{definition}
+
+\begin{theorem}
+    $$\dim X = 0 \Longleftrightarrow |X| < \infty$$
+\end{theorem}
+
+\begin{theorem}
+    $$\dim X \times Y = \dim X + \dim Y$$
+\end{theorem}
+
+\begin{theorem}
+    \begin{enumerate}
+        \item     $X \subset Y$, тогда $\dim X \leq \dim Y$
+        \item $X \subset Y$, $Y$ - неприводим, $\dim X = \dim Y$, тогда $X = Y$
+         \item $Y = \{f = 0\} \subset \mathbb{A}^n \Longleftrightarrow Y = \cup Y_i, \dim Y_i = n - 1$, $\text{codim}_{\mathbb{A}^n} Y = \dim \mathbb{A}^n - \dim Y$
+    \end{enumerate}
+\end{theorem}
+
+\end{document}
